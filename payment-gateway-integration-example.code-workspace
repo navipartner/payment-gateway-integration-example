@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+            "name": "APP",
+			"path": ".\\App"
+		}
+	],
+    "settings": {
+        "al.compilationOptions": {
+			"parallel": true,
+			"generateReportLayout": true // If this is disabled we can have layouts being generated on someone elses machine.
+		},
+		"al.codeAnalyzers": [
+            "${PerTenantExtensionCop}",
+			"${UICop}",
+			"${CodeCop}"
+		],
+		"al.enableCodeActions": true,
+		"al.ruleSetPath": "main.ruleset.json",
+		"al.useLegacyRuntime": false,
+		"al.assemblyProbingPaths": [
+			"./.netpackages",
+			"C:/Windows/Microsoft.NET/Framework64"
+		],
+        "al.backgroundCodeAnalysis": false,
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-dynamics-smb.al"
+        ]
+    }
+}

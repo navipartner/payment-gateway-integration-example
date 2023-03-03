@@ -1,0 +1,39 @@
+{
+  "id": "ba23aec4-31cc-4e1c-986f-703fa68d415f",
+  "name": "payment-gateway-integration-example",
+  "publisher": "NaviPartner",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+        "id": "992c2309-cca4-43cb-9e41-911f482ec088",
+        "name": "NP Retail",
+        "publisher": "NaviPartner",
+        "version": "2100.19.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "21.0.0.0",
+  "application": "21.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 50099
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "10.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
