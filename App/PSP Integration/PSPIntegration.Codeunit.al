@@ -14,6 +14,7 @@ codeunit 50000 "PSP Integration" implements "NPR IPaymentGateway"
             Error(EnvironmentUnknownErr, Setup.Environment);
 
         OpsLogEntry.Init();
+        OpsLogEntry."Entry No." := 0;
         OpsLogEntry."Transaction ID" := Request."Transaction ID";
         OpsLogEntry.Environment := Setup.Environment;
         OpsLogEntry.Description := CopyStr(StrSubstNo('Capturing total amount %1 on transaction %2', Request."Request Amount", Request."Transaction ID"), 1, MaxStrLen(OpsLogEntry.Description));
@@ -35,6 +36,7 @@ codeunit 50000 "PSP Integration" implements "NPR IPaymentGateway"
             Error(EnvironmentUnknownErr, Setup.Environment);
 
         OpsLogEntry.Init();
+        OpsLogEntry."Entry No." := 0;
         OpsLogEntry."Transaction ID" := Request."Transaction ID";
         OpsLogEntry.Environment := Setup.Environment;
         OpsLogEntry.Description := CopyStr(StrSubstNo('Refunding total amount %1 on transaction %2', Request."Request Amount", Request."Transaction ID"), 1, MaxStrLen(OpsLogEntry.Description));
@@ -60,6 +62,7 @@ codeunit 50000 "PSP Integration" implements "NPR IPaymentGateway"
             Error('Cannot cancel transaction operations on it');
 
         OpsLogEntry.Init();
+        OpsLogEntry."Entry No." := 0;
         OpsLogEntry."Transaction ID" := Request."Transaction ID";
         OpsLogEntry.Environment := Setup.Environment;
         OpsLogEntry.Description := CopyStr(StrSubstNo('Cancelling transaction %2', Request."Transaction ID"), 1, MaxStrLen(OpsLogEntry.Description));
