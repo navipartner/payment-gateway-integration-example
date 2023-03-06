@@ -1,0 +1,5 @@
+{
+  "type": "PTE",
+  "templateUrl": "https://github.com/microsoft/AL-Go-PTE@main",
+  "rulesetFile": "main.ruleset.json"
+}

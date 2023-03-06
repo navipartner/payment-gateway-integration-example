@@ -1,8 +1,16 @@
 {
 	"folders": [
 		{
-            "name": "APP",
+	        "name": "App",
 			"path": ".\\App"
+		},
+		{
+			"name": "DevOps",
+			"path": ".\.AL-Go",
+		},
+		{
+			"name": "GitHub",
+			"path": ".\.github",
 		}
 	],
     "settings": {
