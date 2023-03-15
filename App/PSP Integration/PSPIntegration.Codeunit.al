@@ -17,12 +17,14 @@ codeunit 50000 "PSP Integration" implements "NPR IPaymentGateway"
         OpsLogEntry."Entry No." := 0;
         OpsLogEntry."Transaction ID" := Request."Transaction ID";
         OpsLogEntry.Environment := Setup.Environment;
-        OpsLogEntry.Description := CopyStr(StrSubstNo('Capturing total amount %1 on transaction %2', Request."Request Amount", Request."Transaction ID"), 1, MaxStrLen(OpsLogEntry.Description));
+        OpsLogEntry.Description := CopyStr(StrSubstNo('Capturing total amount %1 on transaction %2 from merchant %3', Request."Request Amount", Request."Transaction ID", Setup."Merchant Name"), 1, MaxStrLen(OpsLogEntry.Description));
         OpsLogEntry.Insert(true);
 
         Request.AddBody(Format(OpsLogEntry));
 
         Response."Response Success" := true;
+        Response."Response Operation Id" := Format(OpsLogEntry."Entry No.", 0, 9);
+        Response.AddResponse(Format(OpsLogEntry));
     end;
 
     procedure Refund(var Request: Record "NPR PG Payment Request"; var Response: Record "NPR PG Payment Response");
@@ -39,12 +41,14 @@ codeunit 50000 "PSP Integration" implements "NPR IPaymentGateway"
         OpsLogEntry."Entry No." := 0;
         OpsLogEntry."Transaction ID" := Request."Transaction ID";
         OpsLogEntry.Environment := Setup.Environment;
-        OpsLogEntry.Description := CopyStr(StrSubstNo('Refunding total amount %1 on transaction %2', Request."Request Amount", Request."Transaction ID"), 1, MaxStrLen(OpsLogEntry.Description));
+        OpsLogEntry.Description := CopyStr(StrSubstNo('Refunding total amount %1 on transaction %2 from merchant %3', Request."Request Amount", Request."Transaction ID", Setup."Merchant Name"), 1, MaxStrLen(OpsLogEntry.Description));
         OpsLogEntry.Insert(true);
 
         Request.AddBody(Format(OpsLogEntry));
 
         Response."Response Success" := true;
+        Response."Response Operation Id" := Format(OpsLogEntry."Entry No.", 0, 9);
+        Response.AddResponse(Format(OpsLogEntry));
     end;
 
     procedure Cancel(var Request: Record "NPR PG Payment Request"; var Response: Record "NPR PG Payment Response");
@@ -65,22 +69,28 @@ codeunit 50000 "PSP Integration" implements "NPR IPaymentGateway"
         OpsLogEntry."Entry No." := 0;
         OpsLogEntry."Transaction ID" := Request."Transaction ID";
         OpsLogEntry.Environment := Setup.Environment;
-        OpsLogEntry.Description := CopyStr(StrSubstNo('Cancelling transaction %2', Request."Transaction ID"), 1, MaxStrLen(OpsLogEntry.Description));
+        OpsLogEntry.Description := CopyStr(StrSubstNo('Cancelling transaction %1 from merchant %2', Request."Transaction ID", Setup."Merchant Name"), 1, MaxStrLen(OpsLogEntry.Description));
         OpsLogEntry.Insert(true);
 
         Request.AddBody(Format(OpsLogEntry));
 
         Response."Response Success" := true;
+        Response."Response Operation Id" := Format(OpsLogEntry."Entry No.", 0, 9);
+        Response.AddResponse(Format(OpsLogEntry));
     end;
 
     procedure RunSetupCard(PaymentGatewayCode: Code[10]);
     var
+        CompanyInfo: Record "Company Information";
         Setup: Record "PSP Integration Setup";
     begin
         if (not Setup.Get(PaymentGatewayCode)) then begin
+            CompanyInfo.Get();
             Setup.Init();
             Setup."Gateway Code" := PaymentGatewayCode;
+            Setup."Merchant Name" := CompanyInfo.Name;
             Setup.Insert();
+            Commit();
         end;
 
         Setup.SetRecFilter();
