@@ -32,7 +32,10 @@ procedure Cancel(var Request: Record "NPR PG Payment Request"; var Response: Rec
 procedure RunSetupCard(PaymentGatewayCode: Code[10])
 ```
 
-The procedures will be explained in detail in the following sections.
+The procedures will be explained in detail in the following sections. To create
+the integration you need to create a codeunit that implements the interface,
+along with a value for the `NPR PG Integrations` enum that references your
+implementation of the interface.
 
 ## Setup & secret management
 Most payment service providers require you to provide some information about who
