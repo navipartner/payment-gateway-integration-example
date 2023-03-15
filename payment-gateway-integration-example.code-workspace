@@ -3,6 +3,10 @@
 		{
 	        "name": "App",
 			"path": ".\\App"
+		},
+		{
+			"name": "Documentation",
+			"path": ".\\Documentation"
 		}
 	],
     "settings": {
