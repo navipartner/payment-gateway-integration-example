@@ -9,9 +9,7 @@ To integrate with the module using this example integration, you will need NP
 Retail release version 19.0 or greater. If you have a BC 2022 RW2 (BC22) release
 that would correspond to version `21.19.0.10000` or greater.
 
-> **NOTE**
-> NaviPartner always recommends using the latest AppSource release available for
-your tenant
+**NOTE**: NaviPartner always recommends using the latest AppSource release available for your tenant!
 
 ## Overview
 NaviPartner's payment gateway module offers three different operations, usually
