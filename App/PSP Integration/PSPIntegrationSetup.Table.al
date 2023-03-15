@@ -14,6 +14,11 @@ table 50000 "PSP Integration Setup"
             Description = 'Environment';
             DataClassification = CustomerContent;
         }
+        field(6; "Merchant Name"; Text[100])
+        {
+            Description = 'Merchant Name';
+            DataClassification = CustomerContent;
+        }
     }
 
     keys

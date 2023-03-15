@@ -1,9 +1,11 @@
 page 50000 "PSP Integration Setup Card"
 {
     ApplicationArea = All;
-    UsageCategory = Administration;
+    UsageCategory = None;
     SourceTable = "PSP Integration Setup";
     PageType = Card;
+
+    InsertAllowed = false;
 
     layout
     {
@@ -14,6 +16,12 @@ page 50000 "PSP Integration Setup Card"
                 field(Environment; Rec.Environment)
                 {
                     ApplicationArea = All;
+                    ShowMandatory = true;
+                }
+                field("Merchant Name"; Rec."Merchant Name")
+                {
+                    ApplicationArea = All;
+                    ShowMandatory = true;
                 }
             }
         }
